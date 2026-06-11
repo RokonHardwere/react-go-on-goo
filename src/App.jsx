@@ -1,18 +1,23 @@
+import { Suspense } from 'react'
 import './App.css'
 import Countries from './component/countries/Countries'
 
+const countryPromise = fetch('https://openapi.programming-hero.com/api/all').then(res=>res.json())
 
 function App() {
 
 
   return (
     <>
-      <section id="center">
-        <Countries></Countries>
-       <h1>React World Go One</h1>
-      </section>
+
+        <Suspense fallback={<h3>Nadir Vai on the go0...</h3>}>
+          <Countries propsName={countryPromise}></Countries>
+        </Suspense>
+       
+    
     </>
   )
 }
 
 export default App
+
